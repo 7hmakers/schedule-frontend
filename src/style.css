@@ -96,7 +96,7 @@ th {
   padding: 0.5rem;
 }
 
-input {
+input[type="text"], input[type="number"] {
   height: 35px;
   width: 70px;
   border: none;
@@ -110,6 +110,17 @@ input {
 }
 
 #submit {
+  display: block;
+  margin: 10px auto;
+}
+
+#image {
+  display: block;
+  margin: 0 auto;
   margin-top: 10px;
-  margin-bottom: 10px;
+}
+
+#color {
+  display: inline-block;
+  margin: 10px auto;
 }
