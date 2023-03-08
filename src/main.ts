@@ -1,7 +1,6 @@
 import "./style.css";
 
 const keyEl = document.getElementById("key") as HTMLInputElement;
-const imageEl = document.getElementById("image") as HTMLInputElement;
 const colorEl = document.getElementById("color") as HTMLSelectElement;
 const submitEl = document.getElementById("submit") as HTMLButtonElement;
 const resultEl = document.getElementById("result") as HTMLPreElement;
@@ -27,19 +26,6 @@ const copy = async () => {
     }
     courseName.push(current);
   }
-  const formData = new FormData();
-  const image = imageEl.files?.[0];
-  if (image) {
-    formData.append("file", image);
-  }
-  let photoFilename: string | undefined;
-  if (image) {
-    const imageResp = await fetch(`${import.meta.env.VITE_API_URL}upload_image?key=${key}`, {
-      method: "POST",
-      body: formData,
-    }).then(r => r.json());
-    photoFilename = imageResp.filename;
-  }
   const color = colorEl.value;
   const resp = await fetch(`${import.meta.env.VITE_API_URL}schedule_submit`, {
     method: "POST",
@@ -47,7 +33,6 @@ const copy = async () => {
       key,
       color,
       course_name: courseName,
-      photo_filename: photoFilename,
     }),
     headers: {
       "Content-Type": "application/json",
